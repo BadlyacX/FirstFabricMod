@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "com.badlyac.firstfabricmod.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ResourcePackManagerAccessor",
+		"MinecraftClientAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

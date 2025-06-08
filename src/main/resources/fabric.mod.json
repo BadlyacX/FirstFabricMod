@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "firstfabricmod",
+	"version": "${version}",
+	"name": "FirstFabricMod",
+	"description": "This is my first fabric mod !",
+	"authors": [
+		"BADlyAC"
+	],
+	"contact": {
+		"homepage": "https://www.youtube.com/@BADlyAC",
+		"sources": ""
+	},
+	"license": "MIT",
+	"icon": "assets/firstfabricmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.badlyac.firstfabricmod.FirstFabricMod"
+		],
+		"fabric-datagen": [
+			"com.badlyac.firstfabricmod.FirstFabricModDataGenerator"
+		],
+		"client": [
+			"com.badlyac.firstfabricmod.FirstFabricModClient"
+		]
+	},
+	"mixins": [
+		"firstfabricmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
