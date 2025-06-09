@@ -1,4 +1,4 @@
-package com.badlyac.firstfabricmod;
+package com.badlyac.firstfabricmod.handler;
 
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;

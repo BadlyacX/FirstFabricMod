@@ -1,5 +1,6 @@
 package com.badlyac.firstfabricmod;
 
+import com.badlyac.firstfabricmod.handler.ToggleResourcePackKeyBindHandler;
 import net.fabricmc.api.ModInitializer;
 
 public class FirstFabricMod implements ModInitializer {
