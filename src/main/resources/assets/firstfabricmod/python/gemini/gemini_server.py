@@ -17,7 +17,7 @@ import google.generativeai as genai
 import threading
 
 app = Flask(__name__)
-genai.configure(api_key="AIzaSyDxU-gEM-e6aQKSvgK3hxhoGismMCquJUA")
+genai.configure(api_key="")
 model = genai.GenerativeModel("gemini-2.0-flash")
 
 chat = None
