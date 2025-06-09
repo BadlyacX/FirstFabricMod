@@ -1,6 +1,6 @@
 package com.badlyac.firstfabricmod;
 
-import com.badlyac.firstfabricmod.handler.ToggleResourcePackKeyBindHandler;
+import com.badlyac.firstfabricmod.handlers.ToggleResourcePackKeyBindHandler;
 import net.fabricmc.api.ModInitializer;
 
 public class FirstFabricMod implements ModInitializer {
@@ -11,7 +11,5 @@ public class FirstFabricMod implements ModInitializer {
     // That way, it's clear which mod wrote info, warnings, and errors.
 
     @Override
-    public void onInitialize() {
-        ToggleResourcePackKeyBindHandler.register();
-    }
+    public void onInitialize() {}
 }

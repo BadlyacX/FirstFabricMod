@@ -1,4 +1,4 @@
-package com.badlyac.firstfabricmod.handler;
+package com.badlyac.firstfabricmod.handlers;
 
 import com.badlyac.firstfabricmod.mixin.MinecraftClientAccessor;
 import com.badlyac.firstfabricmod.mixin.ResourcePackManagerAccessor;

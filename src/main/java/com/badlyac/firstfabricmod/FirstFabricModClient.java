@@ -1,8 +1,8 @@
 package com.badlyac.firstfabricmod;
 
-import com.badlyac.firstfabricmod.handler.ToggleAutoAttackHandler;
-import com.badlyac.firstfabricmod.handler.ToggleResourcePackKeyBindHandler;
-import com.badlyac.firstfabricmod.manager.GeminiManager;
+import com.badlyac.firstfabricmod.handlers.ToggleAutoAttackHandler;
+import com.badlyac.firstfabricmod.handlers.ToggleResourcePackKeyBindHandler;
+import com.badlyac.firstfabricmod.managers.GeminiManager;
 import net.fabricmc.api.ClientModInitializer;
 
 public class FirstFabricModClient implements ClientModInitializer {

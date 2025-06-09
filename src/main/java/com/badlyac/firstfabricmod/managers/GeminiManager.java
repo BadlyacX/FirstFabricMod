@@ -1,4 +1,4 @@
-package com.badlyac.firstfabricmod.manager;
+package com.badlyac.firstfabricmod.managers;
 
 import java.io.IOException;
 import java.io.InputStream;
