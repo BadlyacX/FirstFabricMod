@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 
 public class GeminiManager {
     private static final Path SCRIPT_PATH = Paths.get("gemini_server.py");
@@ -44,7 +45,28 @@ public class GeminiManager {
     public static void stopServer() {
         if (pythonProcess != null) {
             pythonProcess.destroy();
+            try {
+                if (!pythonProcess.waitFor(5, TimeUnit.SECONDS)) {
+                    pythonProcess.destroyForcibly();
+                    System.out.println("Python process has been forcefully terminated.");
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().isInterrupted();
+                System.err.println("Error while stopping python process: " + e.getMessage());
+            }
+            pythonProcess = null;
+            System.out.println("Python process has been terminated.");
+
+            try {
+                if (Files.exists(SCRIPT_PATH)) {
+                    Files.delete(SCRIPT_PATH);
+                    System.out.println("gemini_server.py has been deleted.");
+                } else {
+                    System.out.println("gemini_server.py does not exist.");
+                }
+            } catch (IOException e) {
+                System.err.println("Error ocurred while deleting gemini_server.py: " + e.getMessage());
+            }
         }
     }
 }
-

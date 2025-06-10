@@ -1,6 +1,5 @@
 package com.badlyac.firstfabricmod.commands;
 
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.brigadier.CommandDispatcher;
@@ -24,9 +23,9 @@ public class AskGemini {
                                     String input = StringArgumentType.getString(context, "input");
 
                                     if (input.equalsIgnoreCase("reset")) {
-                                        sendSimplePost("http://localhost:5000/reset", "§6[Gemini] 對話已重置！");
+                                        sendSimplePost("http://localhost:5000/reset", "§6[Gemini] Chat has been reset");
                                     } else if (input.equalsIgnoreCase("shutdown")) {
-                                        sendSimplePost("http://localhost:5000/shutdown", "§c[Gemini] AI 伺服器已關閉！");
+                                        sendSimplePost("http://localhost:5000/shutdown", "§c[Gemini] AI Server has been shutdown");
                                     } else {
                                         sendAskRequest(input);
                                     }
@@ -35,7 +34,6 @@ public class AskGemini {
                                 }))
         );
     }
-
 
     private static void sendAskRequest(String question) {
         HttpClient client = HttpClient.newHttpClient();
@@ -56,18 +54,18 @@ public class AskGemini {
                         });
                     } catch (Exception e) {
                         MinecraftClient.getInstance().execute(() -> {
-                            MinecraftClient.getInstance().player.sendMessage(Text.literal("§4[錯誤] Gemini 回覆解析失敗"), false);
+                            MinecraftClient.getInstance().player.sendMessage(Text.literal("§4[ERROR] Gemini response cannot be parsed"), false);
                         });
                     }
                 });
     }
 
     private static void sendResetRequest() {
-        sendSimplePost("http://localhost:5000/reset", "§6[Gemini] 對話已重置！");
+        sendSimplePost("http://localhost:5000/reset", "§6[Gemini] chat has been reset！");
     }
 
     private static void sendShutdownRequest() {
-        sendSimplePost("http://localhost:5000/shutdown", "§c[Gemini] AI 伺服器已關閉！");
+        sendSimplePost("http://localhost:5000/shutdown", "§c[Gemini] AI Server has been shutdown");
     }
 
     private static void sendSimplePost(String url, String confirmMessage) {
