@@ -45,16 +45,19 @@ public class ToggleResourcePackKeyBindHandler {
 
     private static void toggleXRay(MinecraftClient client) {
         var packManager = client.getResourcePackManager();
-        var enabledPacks = packManager.getEnabledIds();
+        String fullPackId = Identifier.of(id, PACK_ID).toString();
 
-        if (enabledPacks.contains(PACK_IDENTIFIER.toString())) {
-            packManager.disable(PACK_IDENTIFIER.toString());
-            MsgUtils.sendMsg(client, "§cX-Ray 關閉！", false);
+        var currentProfiles = new java.util.LinkedHashSet<>(packManager.getEnabledIds());
+
+        if (currentProfiles.contains(fullPackId)) {
+            currentProfiles.remove(fullPackId);
+            MsgUtils.sendMsg(client, "§cX-Ray activated！", false);
         } else {
-            packManager.enable(PACK_IDENTIFIER.toString());
-            MsgUtils.sendMsg(client, "§aX-Ray 開啟！", false);
+            currentProfiles.add(fullPackId);
+            MsgUtils.sendMsg(client, "§aX-Ray deactivated！", false);
         }
 
+        packManager.setEnabledProfiles(currentProfiles);
         client.reloadResources();
     }
 }
