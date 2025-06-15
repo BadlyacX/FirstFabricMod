@@ -1,6 +1,7 @@
 package com.badlyac.firstfabricmod.handlers;
 
 
+import com.badlyac.firstfabricmod.utils.MsgUtils;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -31,10 +32,7 @@ public class ToggleAutoAttackHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleAttackKey.wasPressed()) {
                 isAutoAttackEnabled = !isAutoAttackEnabled;
-                Objects.requireNonNull(client.player).sendMessage(
-                        Text.literal("Auto Attack: " + (isAutoAttackEnabled ? "§aON" : "§cOFF")),
-                        true
-                );
+                MsgUtils.sendMsg(client, "Auto Attack: " + (isAutoAttackEnabled ? "§aON" : "§cOFF"), true);
             }
             if (isAutoAttackEnabled) {
                 handleAutoAttack(client);

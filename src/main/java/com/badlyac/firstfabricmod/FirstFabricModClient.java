@@ -12,7 +12,7 @@ public class FirstFabricModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        //ToggleResourcePackKeyBindHandler.register();
+        ToggleResourcePackKeyBindHandler.register();
         ToggleAutoAttackHandler.register();
         GeminiManager.setup();
 

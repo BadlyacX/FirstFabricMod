@@ -1,5 +1,6 @@
 package com.badlyac.firstfabricmod.commands;
 
+import com.badlyac.firstfabricmod.utils.MsgUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.brigadier.CommandDispatcher;
@@ -7,7 +8,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,6 +15,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class AskGemini {
+
+    private static final MinecraftClient minecraftClient = MinecraftClient.getInstance();
+
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(
                 ClientCommandManager.literal("askgemini")
@@ -49,12 +52,13 @@ public class AskGemini {
                     try {
                         JsonObject json = JsonParser.parseString(body).getAsJsonObject();
                         String reply = json.get("reply").getAsString();
+
                         MinecraftClient.getInstance().execute(() -> {
-                            MinecraftClient.getInstance().player.sendMessage(Text.literal("§cGemini: §r" + reply), false);
+                            MsgUtils.sendMsg(minecraftClient, "§cGemini: §r" + reply, false);
                         });
                     } catch (Exception e) {
                         MinecraftClient.getInstance().execute(() -> {
-                            MinecraftClient.getInstance().player.sendMessage(Text.literal("§4[ERROR] Gemini response cannot be parsed"), false);
+                            MsgUtils.sendMsg(minecraftClient, "§4[ERROR] Gemini response cannot be parsed", false);
                         });
                     }
                 });
@@ -78,7 +82,7 @@ public class AskGemini {
         client.sendAsync(request, HttpResponse.BodyHandlers.discarding())
                 .thenAccept(response -> {
                     MinecraftClient.getInstance().execute(() ->
-                            MinecraftClient.getInstance().player.sendMessage(Text.literal(confirmMessage), false)
+                            MsgUtils.sendMsg(minecraftClient, confirmMessage, false)
                     );
                 });
     }
